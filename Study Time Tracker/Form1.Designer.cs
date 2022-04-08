@@ -47,6 +47,13 @@
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -57,7 +64,7 @@
             this.textBox1.Location = new System.Drawing.Point(56, 18);
             this.textBox1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1448, 49);
+            this.textBox1.Size = new System.Drawing.Size(1293, 49);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Time invested in watching tutorials C#";
             // 
@@ -66,10 +73,10 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox2.Location = new System.Drawing.Point(56, 70);
+            this.textBox2.Location = new System.Drawing.Point(57, 72);
             this.textBox2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(1448, 49);
+            this.textBox2.Size = new System.Drawing.Size(1293, 49);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "Number of projects made";
             // 
@@ -78,10 +85,10 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox3.Location = new System.Drawing.Point(56, 122);
+            this.textBox3.Location = new System.Drawing.Point(57, 126);
             this.textBox3.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(1448, 49);
+            this.textBox3.Size = new System.Drawing.Size(1293, 49);
             this.textBox3.TabIndex = 2;
             this.textBox3.Text = "Time invested in projects";
             // 
@@ -90,10 +97,10 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(56, 174);
+            this.textBox4.Location = new System.Drawing.Point(57, 180);
             this.textBox4.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(1448, 49);
+            this.textBox4.Size = new System.Drawing.Size(1293, 49);
             this.textBox4.TabIndex = 3;
             this.textBox4.Text = "Time invested in reading books C#";
             // 
@@ -102,10 +109,10 @@
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox5.Location = new System.Drawing.Point(56, 351);
+            this.textBox5.Location = new System.Drawing.Point(57, 342);
             this.textBox5.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(1448, 49);
+            this.textBox5.Size = new System.Drawing.Size(1293, 49);
             this.textBox5.TabIndex = 4;
             this.textBox5.Text = "Time invested in reading documentation";
             // 
@@ -114,10 +121,10 @@
             this.textBox6.BackColor = System.Drawing.SystemColors.Control;
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox6.Location = new System.Drawing.Point(56, 292);
+            this.textBox6.Location = new System.Drawing.Point(57, 288);
             this.textBox6.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(1448, 49);
+            this.textBox6.Size = new System.Drawing.Size(1293, 49);
             this.textBox6.TabIndex = 5;
             this.textBox6.Text = "Time invested in googling solutions";
             // 
@@ -126,47 +133,50 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox7.Location = new System.Drawing.Point(56, 233);
+            this.textBox7.Location = new System.Drawing.Point(57, 234);
             this.textBox7.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(1448, 49);
+            this.textBox7.Size = new System.Drawing.Size(1293, 49);
             this.textBox7.TabIndex = 6;
             this.textBox7.Text = "Number of the books C# was read";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1200, 446);
+            this.button1.Location = new System.Drawing.Point(1205, 448);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(149, 48);
             this.button1.TabIndex = 7;
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox8
             // 
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox8.Location = new System.Drawing.Point(1094, 445);
+            this.textBox8.Location = new System.Drawing.Point(1129, 447);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 49);
+            this.textBox8.Size = new System.Drawing.Size(70, 49);
             this.textBox8.TabIndex = 14;
+            this.textBox8.Click += new System.EventHandler(this.textBox8_Click);
             // 
             // textBox9
             // 
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox9.Location = new System.Drawing.Point(988, 445);
+            this.textBox9.Location = new System.Drawing.Point(1053, 447);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 49);
+            this.textBox9.Size = new System.Drawing.Size(70, 49);
             this.textBox9.TabIndex = 15;
+            this.textBox9.Click += new System.EventHandler(this.textBox9_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(49, 453);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(51, 457);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(933, 37);
+            this.label1.Size = new System.Drawing.Size(996, 36);
             this.label1.TabIndex = 16;
-            this.label1.Text = "Please select check box and enter time in format hours : minutes";
+            this.label1.Text = "Please select check box and enter time in format hours: minutes or number";
             // 
             // checkBox1
             // 
@@ -180,16 +190,17 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(19, 81);
+            this.checkBox2.Location = new System.Drawing.Point(20, 82);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(28, 27);
             this.checkBox2.TabIndex = 18;
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.Click += new System.EventHandler(this.checkBox2_Click);
             // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(19, 133);
+            this.checkBox3.Location = new System.Drawing.Point(20, 134);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(28, 27);
             this.checkBox3.TabIndex = 19;
@@ -198,7 +209,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(19, 185);
+            this.checkBox4.Location = new System.Drawing.Point(20, 191);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(28, 27);
             this.checkBox4.TabIndex = 20;
@@ -207,7 +218,7 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(19, 244);
+            this.checkBox5.Location = new System.Drawing.Point(20, 245);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(28, 27);
             this.checkBox5.TabIndex = 21;
@@ -216,7 +227,7 @@
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(19, 303);
+            this.checkBox6.Location = new System.Drawing.Point(20, 299);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(28, 27);
             this.checkBox6.TabIndex = 22;
@@ -225,7 +236,7 @@
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(19, 362);
+            this.checkBox7.Location = new System.Drawing.Point(20, 353);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(28, 27);
             this.checkBox7.TabIndex = 23;
@@ -233,18 +244,90 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1355, 445);
+            this.button2.Location = new System.Drawing.Point(1355, 446);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(149, 48);
             this.button2.TabIndex = 24;
             this.button2.Text = "Back";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1355, 18);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(149, 49);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "Reset";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1355, 72);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(149, 49);
+            this.button4.TabIndex = 26;
+            this.button4.Text = "Reset";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(1355, 126);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(149, 49);
+            this.button5.TabIndex = 27;
+            this.button5.Text = "Reset";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1355, 178);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(149, 49);
+            this.button6.TabIndex = 28;
+            this.button6.Text = "Reset";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(1355, 233);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(149, 49);
+            this.button7.TabIndex = 29;
+            this.button7.Text = "Reset";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(1355, 287);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(149, 49);
+            this.button8.TabIndex = 30;
+            this.button8.Text = "Reset";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(1355, 342);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(149, 49);
+            this.button9.TabIndex = 31;
+            this.button9.Text = "Reset";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1520, 527);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox7);
             this.Controls.Add(this.checkBox6);
@@ -296,6 +379,13 @@
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }
 
