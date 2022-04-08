@@ -17,7 +17,7 @@ namespace Study_Time_Tracker
             InitializeComponent();
         }
 
-        // Start code
+        // 
 
     }
 }
