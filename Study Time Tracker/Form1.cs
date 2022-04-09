@@ -107,7 +107,7 @@ namespace Study_Time_Tracker
             textBox4.Text = $"Time invested in reading books C# is " + File.ReadAllText(path4Hours) + " hours and " + File.ReadAllText(path4Minutes) + " minutes";
             textBox5.Text = $"Number of the books C# was read are " + File.ReadAllText(path5Number);
             textBox6.Text = $"Time invested in googling solutions is " + File.ReadAllText(path6Hours) + " hours and " + File.ReadAllText(path6Minutes) + " minutes";
-            textBox7.Text = $"Time invested in reading documentation is " + File.ReadAllText(path7Hours) + "hours and " + File.ReadAllText(path7Minutes) + " minutes";
+            textBox7.Text = $"Time invested in reading documentation is " + File.ReadAllText(path7Hours) + " hours and " + File.ReadAllText(path7Minutes) + " minutes";
         }
 
         // Add button
@@ -290,7 +290,7 @@ namespace Study_Time_Tracker
             File.WriteAllText(path4Minutes, "0");
 
             // Reload textbox4
-            textBox4.Text = $"Time invested in reading books C# is " + File.ReadAllText(path4Hours) + "hours and " + File.ReadAllText(path4Minutes) + " minutes";
+            textBox4.Text = $"Time invested in reading books C# is " + File.ReadAllText(path4Hours) + " hours and " + File.ReadAllText(path4Minutes) + " minutes";
 
         }
 
@@ -320,7 +320,7 @@ namespace Study_Time_Tracker
             File.WriteAllText(path7Minutes, "0");
 
             // Reload textbox4
-            textBox7.Text = $"Time invested in reading documentation is " + File.ReadAllText(path7Hours) + "hours and " + File.ReadAllText(path7Minutes) + " minutes";
+            textBox7.Text = $"Time invested in reading documentation is " + File.ReadAllText(path7Hours) + " hours and " + File.ReadAllText(path7Minutes) + " minutes";
 
 
         }
