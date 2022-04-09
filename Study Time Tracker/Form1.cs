@@ -583,6 +583,16 @@ namespace Study_Time_Tracker
                 MessageBox.Show("You forget to select ticker", "Error", MessageBoxButtons.OK);
             }
         }
+
+        // Closing form
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to save?", "Message", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                Directory.Delete(@"C:\temp", true);
+            }
+
+        }
     }
     
 }
