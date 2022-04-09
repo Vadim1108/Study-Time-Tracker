@@ -50,7 +50,7 @@ namespace Study_Time_Tracker
         // When loading
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Create work folders
+            // Create work folders if they are not present
             if (!Directory.Exists(path))
             {
 
@@ -102,8 +102,12 @@ namespace Study_Time_Tracker
 
             // Update text boxes
             textBox1.Text = "Time invested in watching tutorials C# is " + File.ReadAllText(path1Hours) + " hours and " + File.ReadAllText(path1Minutes) + " minutes";
-            textBox2.Text = $"Number of projects made are: " + File.ReadAllText(path2Number);
-
+            textBox2.Text = $"Number of projects made are " + File.ReadAllText(path2Number);
+            textBox3.Text = $"Time invested in projects is " + File.ReadAllText(path3Hours) + " hours and " + File.ReadAllText(path3Minutes) + " minutes";
+            textBox4.Text = $"Time invested in reading books C# is " + File.ReadAllText(path4Hours) + " hours and " + File.ReadAllText(path4Minutes) + " minutes";
+            textBox5.Text = $"Number of the books C# was read are " + File.ReadAllText(path5Number);
+            textBox6.Text = $"Time invested in googling solutions is " + File.ReadAllText(path6Hours) + " hours and " + File.ReadAllText(path6Minutes) + " minutes";
+            textBox7.Text = $"Time invested in reading documentation is " + File.ReadAllText(path7Hours) + "hours and " + File.ReadAllText(path7Minutes) + " minutes";
         }
 
         // Add button
@@ -136,7 +140,6 @@ namespace Study_Time_Tracker
                 File.WriteAllText(path1Minutes, Convert.ToString(tempMinutes));
                 File.WriteAllText(path1Hours, Convert.ToString(tempHours));
 
-                checkBox1.Checked = false;
             }
             else if (checkBox2.Checked)
             {
@@ -149,11 +152,99 @@ namespace Study_Time_Tracker
                 // Save new date into file
                 File.WriteAllText(path2Number, Convert.ToString(tempMinutes));
 
-                // Reset field for input hours
-                checkBox2.Checked = false;
-                textBox9.Enabled = true;
+            }
+            else if (checkBox3.Checked)
+            {
+                // Read data from files and add input time
+                tempMinutes = Convert.ToInt32(File.ReadAllText(path3Minutes)) + inputMinutes;
+                tempHours = Convert.ToInt32(File.ReadAllText(path3Hours)) + inputHours;
+
+                // Sorting time per 60;
+                if (tempMinutes >= 60)
+                {
+                    tempHours++;
+                    tempMinutes = tempMinutes - 60;
+                }
+
+                // Reload textbox3
+                textBox3.Text = $"Time invested in projects is {tempHours} hours and {tempMinutes} minutes";
+
+                // Save new date into files
+                File.WriteAllText(path3Minutes, Convert.ToString(tempMinutes));
+                File.WriteAllText(path3Hours, Convert.ToString(tempHours));
+            }
+            else if (checkBox4.Checked)
+            {
+                // Read data from files and add input time
+                tempMinutes = Convert.ToInt32(File.ReadAllText(path4Minutes)) + inputMinutes;
+                tempHours = Convert.ToInt32(File.ReadAllText(path4Hours)) + inputHours;
+
+                // Sorting time per 60;
+                if (tempMinutes >= 60)
+                {
+                    tempHours++;
+                    tempMinutes = tempMinutes - 60;
+                }
+
+                // Reload textbox4
+                textBox4.Text = $"Time invested in reading books C# is {tempHours} hours and {tempMinutes} minutes";
+
+                // Save new date into files
+                File.WriteAllText(path4Minutes, Convert.ToString(tempMinutes));
+                File.WriteAllText(path4Hours, Convert.ToString(tempHours));
+            }
+            else if (checkBox5.Checked)
+            {
+                // Read data from file and add input number
+                tempMinutes = Convert.ToInt32(File.ReadAllText(path5Number)) + inputMinutes;
+
+                // Reload textbox2
+                textBox5.Text = $"Number of the books C# was read are {tempMinutes}";
+
+                // Save new date into file
+                File.WriteAllText(path5Number, Convert.ToString(tempMinutes));
 
 
+            }
+            else if (checkBox6.Checked)
+            {
+                // Read data from files and add input time
+                tempMinutes = Convert.ToInt32(File.ReadAllText(path6Minutes)) + inputMinutes;
+                tempHours = Convert.ToInt32(File.ReadAllText(path6Hours)) + inputHours;
+
+                // Sorting time per 60;
+                if (tempMinutes >= 60)
+                {
+                    tempHours++;
+                    tempMinutes = tempMinutes - 60;
+                }
+
+                // Reload textbox6
+                textBox6.Text = $"Time invested in googling solutions is {tempHours} hours and {tempMinutes} minutes";
+
+                // Save new date into files
+                File.WriteAllText(path6Minutes, Convert.ToString(tempMinutes));
+                File.WriteAllText(path6Hours, Convert.ToString(tempHours));
+            }
+            else if (checkBox7.Checked)
+            {
+                // Read data from files and add input time
+                tempMinutes = Convert.ToInt32(File.ReadAllText(path7Minutes)) + inputMinutes;
+                tempHours = Convert.ToInt32(File.ReadAllText(path7Hours)) + inputHours;
+
+                // Sorting time per 60;
+                if (tempMinutes >= 60)
+                {
+                    tempHours++;
+                    tempMinutes = tempMinutes - 60;
+                }
+
+                // Reload textbox7
+                textBox7.Text = $"Time invested in reading documentation is {tempHours} hours and {tempMinutes} minutes";
+
+                // Save new date into files
+                File.WriteAllText(path7Minutes, Convert.ToString(tempMinutes));
+                File.WriteAllText(path7Hours, Convert.ToString(tempHours));
             }
             else
             {
@@ -162,6 +253,7 @@ namespace Study_Time_Tracker
             }
         }
 
+        // Reset buttons
         // Reset button1
         private void button3_Click(object sender, EventArgs e)
         {
@@ -174,27 +266,102 @@ namespace Study_Time_Tracker
 
         }
 
-        // When choose ticker 2 , make available only one field to input number
-        private void checkBox2_Click(object sender, EventArgs e)
-        {
-            textBox9.Enabled = false;
-        }
-
         // Reset button2
         private void button4_Click(object sender, EventArgs e)
         {
             File.WriteAllText(path2Number, "0");
-            textBox2.Text = $"Number of projects made are: " + File.ReadAllText(path2Number);
+            textBox2.Text = $"Number of projects made are " + File.ReadAllText(path2Number);
         }
 
+        // Reset button3
+        private void button5_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(path3Hours, "0");
+            File.WriteAllText(path3Minutes, "0");
+
+            // Reload textbox3
+            textBox3.Text = $"Time invested in projects is " + File.ReadAllText(path3Hours) + " hours and " + File.ReadAllText(path3Minutes) + " minutes";
+        }
+
+        // Reset button4
+        private void button6_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(path4Hours, "0");
+            File.WriteAllText(path4Minutes, "0");
+
+            // Reload textbox4
+            textBox4.Text = $"Time invested in reading books C# is " + File.ReadAllText(path4Hours) + "hours and " + File.ReadAllText(path4Minutes) + " minutes";
+
+        }
+
+        // Reset button5
+        private void button7_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(path5Number, "0");
+            textBox5.Text = $"Number of the books C# was read are " + File.ReadAllText(path5Number);
+
+        }
+
+        // Reset button6
+        private void button8_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(path6Hours, "0");
+            File.WriteAllText(path6Minutes, "0");
+
+            // Reload textbox4
+            textBox6.Text = $"Time invested in googling solutions is " + File.ReadAllText(path6Hours) + " hours and " + File.ReadAllText(path6Minutes) + " minutes";
+
+        }
+        
+        // Reset button7
+        private void button9_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(path7Hours, "0");
+            File.WriteAllText(path7Minutes, "0");
+
+            // Reload textbox4
+            textBox7.Text = $"Time invested in reading documentation is " + File.ReadAllText(path7Hours) + "hours and " + File.ReadAllText(path7Minutes) + " minutes";
+
+
+        }
+
+        // Another functions
+        // When choose ticker 2 , make available only one field to input number
+        private void checkBox2_Click(object sender, EventArgs e)
+        {
+            textBox9.Enabled = false;
+
+            // If you remove ticker set back field be enabled
+            if (!checkBox2.Checked)
+            {
+                textBox9.Enabled = true;
+            }
+        }
+
+        // Click on input field
         private void textBox9_Click(object sender, EventArgs e)
         {
             textBox9.Text = "";
         }
 
+        // Click on input field
         private void textBox8_Click(object sender, EventArgs e)
         {
             textBox8.Text = "";
         }
+
+        // Make one field to input data and reset if you switch 
+        private void checkBox5_Click(object sender, EventArgs e)
+        {
+            textBox9.Enabled = false;
+
+            // If you remove ticker set back field be enabled
+            if (!checkBox5.Checked)
+            {
+                textBox9.Enabled = true;
+            }
+        }
+
+
     }
 }
