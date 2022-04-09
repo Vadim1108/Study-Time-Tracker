@@ -40,8 +40,6 @@ namespace Study_Time_Tracker
         int tempHours = 0;
         int tempMinutes = 0;
 
-
-
         public Form1()
         {
             InitializeComponent();
@@ -110,7 +108,7 @@ namespace Study_Time_Tracker
             textBox7.Text = $"Time invested in reading documentation is " + File.ReadAllText(path7Hours) + " hours and " + File.ReadAllText(path7Minutes) + " minutes";
         }
 
-        // Add button
+        // Add button click
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -362,6 +360,229 @@ namespace Study_Time_Tracker
             }
         }
 
+        // Back button click
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Read input to vars
+            int inputHours = Convert.ToInt32(textBox9.Text);
+            int inputMinutes = Convert.ToInt32(textBox8.Text);
 
+
+            // Select check box and add time to files
+            if (checkBox1.Checked)
+            {
+                if (Convert.ToInt32(File.ReadAllText(path1Hours)) <= 0 & Convert.ToInt32(File.ReadAllText(path1Minutes)) < inputMinutes || Convert.ToInt32(File.ReadAllText(path1Hours)) < inputHours || Convert.ToInt32(File.ReadAllText(path1Hours)) <= inputHours & Convert.ToInt32(File.ReadAllText(path1Minutes)) < inputMinutes)
+                {
+                    MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
+
+                }
+                else if (Convert.ToInt32(File.ReadAllText(path1Minutes)) < 60)
+                {
+                    int a = Convert.ToInt32(File.ReadAllText(path1Minutes)) + 60;
+                    File.WriteAllText(path1Minutes, Convert.ToString(a));
+                    int b = Convert.ToInt32(File.ReadAllText(path1Hours)) - 1;
+                    File.WriteAllText(path1Hours, Convert.ToString(b));
+
+                    // Read data from files and add input time
+                    tempMinutes = Convert.ToInt32(File.ReadAllText(path1Minutes)) - inputMinutes;
+                    tempHours = Convert.ToInt32(File.ReadAllText(path1Hours)) - inputHours;
+
+                    // Sorting time per 60;
+                    if (tempMinutes >= 60)
+                    {
+                        tempHours++;
+                        tempMinutes = tempMinutes - 60;
+                    }
+
+                    // Reload textbox1
+                    textBox1.Text = $"Time invested in watching tutorials C# is: {tempHours} hours and {tempMinutes} minutes";
+
+                    // Save new date into files
+                    File.WriteAllText(path1Minutes, Convert.ToString(tempMinutes));
+                    File.WriteAllText(path1Hours, Convert.ToString(tempHours));
+
+                }
+
+            }
+            else if (checkBox2.Checked)
+            {
+                if (Convert.ToInt32(File.ReadAllText(path2Number)) <= 0 || Convert.ToInt32(File.ReadAllText(path2Number)) < inputMinutes)
+                {
+                    MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
+
+                }
+                else
+                {
+                    // Read data from file and add input number
+                    tempMinutes = Convert.ToInt32(File.ReadAllText(path2Number)) - inputMinutes;
+
+                    // Reload textbox2
+                    textBox2.Text = $"Number of projects made are: {tempMinutes}";
+
+                    // Save new date into file
+                    File.WriteAllText(path2Number, Convert.ToString(tempMinutes));
+                }
+
+            }
+            else if (checkBox3.Checked)
+            {
+                if (Convert.ToInt32(File.ReadAllText(path3Hours)) <= 0 & Convert.ToInt32(File.ReadAllText(path3Minutes)) < inputMinutes || Convert.ToInt32(File.ReadAllText(path3Hours)) < inputHours || Convert.ToInt32(File.ReadAllText(path3Hours)) <= inputHours & Convert.ToInt32(File.ReadAllText(path3Minutes)) < inputMinutes)
+                {
+                    MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
+
+                }
+                else if (Convert.ToInt32(File.ReadAllText(path3Minutes)) < 60)
+                {
+                    int a = Convert.ToInt32(File.ReadAllText(path3Minutes)) + 60;
+                    File.WriteAllText(path3Minutes, Convert.ToString(a));
+                    int b = Convert.ToInt32(File.ReadAllText(path3Hours)) - 1;
+                    File.WriteAllText(path3Hours, Convert.ToString(b));
+
+                    // Read data from files and add input time
+                    tempMinutes = Convert.ToInt32(File.ReadAllText(path3Minutes)) - inputMinutes;
+                    tempHours = Convert.ToInt32(File.ReadAllText(path3Hours)) - inputHours;
+
+                    // Sorting time per 60;
+                    if (tempMinutes >= 60)
+                    {
+                        tempHours++;
+                        tempMinutes = tempMinutes - 60;
+                    }
+
+                    // Reload textbox3
+                    textBox3.Text = $"Time invested in projects is {tempHours} hours and {tempMinutes} minutes";
+
+                    // Save new date into files
+                    File.WriteAllText(path3Minutes, Convert.ToString(tempMinutes));
+                    File.WriteAllText(path3Hours, Convert.ToString(tempHours));
+                }
+            }
+            else if (checkBox4.Checked)
+            {
+                if (Convert.ToInt32(File.ReadAllText(path4Hours)) <= 0 & Convert.ToInt32(File.ReadAllText(path4Minutes)) < inputMinutes || Convert.ToInt32(File.ReadAllText(path4Hours)) < inputHours || Convert.ToInt32(File.ReadAllText(path4Hours)) <= inputHours & Convert.ToInt32(File.ReadAllText(path4Minutes)) < inputMinutes)
+                {
+                    MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
+
+                }
+                else if (Convert.ToInt32(File.ReadAllText(path4Minutes)) < 60)
+                {
+                    int a = Convert.ToInt32(File.ReadAllText(path4Minutes)) + 60;
+                    File.WriteAllText(path4Minutes, Convert.ToString(a));
+                    int b = Convert.ToInt32(File.ReadAllText(path4Hours)) - 1;
+                    File.WriteAllText(path4Hours, Convert.ToString(b));
+
+                    // Read data from files and add input time
+                    tempMinutes = Convert.ToInt32(File.ReadAllText(path4Minutes)) - inputMinutes;
+                    tempHours = Convert.ToInt32(File.ReadAllText(path4Hours)) - inputHours;
+
+                    // Sorting time per 60;
+                    if (tempMinutes >= 60)
+                    {
+                        tempHours++;
+                        tempMinutes = tempMinutes - 60;
+                    }
+
+                    // Reload textbox4
+                    textBox4.Text = $"Time invested in reading books C# is {tempHours} hours and {tempMinutes} minutes";
+
+                    // Save new date into files
+                    File.WriteAllText(path4Minutes, Convert.ToString(tempMinutes));
+                    File.WriteAllText(path4Hours, Convert.ToString(tempHours));
+                }
+
+            }
+            else if (checkBox5.Checked)
+            {
+                if (Convert.ToInt32(File.ReadAllText(path5Number)) <= 0 || Convert.ToInt32(File.ReadAllText(path5Number)) < inputMinutes)
+                {
+                    MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
+
+                }
+                else
+                {
+                    // Read data from file and add input number
+                    tempMinutes = Convert.ToInt32(File.ReadAllText(path5Number)) - inputMinutes;
+
+                    // Reload textbox2
+                    textBox5.Text = $"Number of the books C# was read are {tempMinutes}";
+
+                    // Save new date into file
+                    File.WriteAllText(path5Number, Convert.ToString(tempMinutes));
+                }
+
+            }
+            else if (checkBox6.Checked)
+            {
+                if (Convert.ToInt32(File.ReadAllText(path6Hours)) <= 0 & Convert.ToInt32(File.ReadAllText(path6Minutes)) < inputMinutes || Convert.ToInt32(File.ReadAllText(path6Hours)) < inputHours || Convert.ToInt32(File.ReadAllText(path6Hours)) <= inputHours & Convert.ToInt32(File.ReadAllText(path6Minutes)) < inputMinutes)
+                {
+                    MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
+
+                }
+                else if (Convert.ToInt32(File.ReadAllText(path6Minutes)) < 60)
+                {
+                    int a = Convert.ToInt32(File.ReadAllText(path6Minutes)) + 60;
+                    File.WriteAllText(path6Minutes, Convert.ToString(a));
+                    int b = Convert.ToInt32(File.ReadAllText(path6Hours)) - 1;
+                    File.WriteAllText(path6Hours, Convert.ToString(b));
+
+                    // Read data from files and add input time
+                    tempMinutes = Convert.ToInt32(File.ReadAllText(path6Minutes)) - inputMinutes;
+                    tempHours = Convert.ToInt32(File.ReadAllText(path6Hours)) - inputHours;
+
+                    // Sorting time per 60;
+                    if (tempMinutes >= 60)
+                    {
+                        tempHours++;
+                        tempMinutes = tempMinutes - 60;
+                    }
+
+                    // Reload textbox6
+                    textBox6.Text = $"Time invested in googling solutions is {tempHours} hours and {tempMinutes} minutes";
+
+                    // Save new date into files
+                    File.WriteAllText(path6Minutes, Convert.ToString(tempMinutes));
+                    File.WriteAllText(path6Hours, Convert.ToString(tempHours));
+                }
+            }
+            else if (checkBox7.Checked)
+            {
+                if (Convert.ToInt32(File.ReadAllText(path7Hours)) <= 0 & Convert.ToInt32(File.ReadAllText(path7Minutes)) < inputMinutes || Convert.ToInt32(File.ReadAllText(path7Hours)) < inputHours || Convert.ToInt32(File.ReadAllText(path7Hours)) <= inputHours & Convert.ToInt32(File.ReadAllText(path7Minutes)) < inputMinutes)
+                {
+                    MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
+
+                }
+                else if (Convert.ToInt32(File.ReadAllText(path7Minutes)) < 60)
+                {
+                    int a = Convert.ToInt32(File.ReadAllText(path7Minutes)) + 60;
+                    File.WriteAllText(path7Minutes, Convert.ToString(a));
+                    int b = Convert.ToInt32(File.ReadAllText(path7Hours)) - 1;
+                    File.WriteAllText(path7Hours, Convert.ToString(b));
+
+                    // Read data from files and add input time
+                    tempMinutes = Convert.ToInt32(File.ReadAllText(path7Minutes)) - inputMinutes;
+                    tempHours = Convert.ToInt32(File.ReadAllText(path7Hours)) - inputHours;
+
+                    // Sorting time per 60;
+                    if (tempMinutes >= 60)
+                    {
+                        tempHours++;
+                        tempMinutes = tempMinutes - 60;
+                    }
+
+                    // Reload textbox7
+                    textBox7.Text = $"Time invested in reading documentation is {tempHours} hours and {tempMinutes} minutes";
+
+                    // Save new date into files
+                    File.WriteAllText(path7Minutes, Convert.ToString(tempMinutes));
+                    File.WriteAllText(path7Hours, Convert.ToString(tempHours));
+                }
+            }
+            else
+            {
+                // Error if you forget to choose ticker and press add button
+                MessageBox.Show("You forget to select ticker", "Error", MessageBoxButtons.OK);
+            }
+        }
     }
+    
 }
