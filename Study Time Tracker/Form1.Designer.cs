@@ -66,7 +66,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(1293, 49);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Time invested in watching tutorials C#";
+            this.textBox1.Text = "Time invested in watching tutorials C# is 0 hours and 0 minutes";
             // 
             // textBox2
             // 
@@ -78,7 +78,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(1293, 49);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "Number of projects made";
+            this.textBox2.Text = "Number of projects made are 0";
             // 
             // textBox3
             // 
@@ -90,7 +90,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(1293, 49);
             this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "Time invested in projects";
+            this.textBox3.Text = "Time invested in projects is 0 hours and 0 minutes";
             // 
             // textBox4
             // 
@@ -102,7 +102,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(1293, 49);
             this.textBox4.TabIndex = 3;
-            this.textBox4.Text = "Time invested in reading books C#";
+            this.textBox4.Text = "Time invested in reading books C# is 0 hours and 0 minutes";
             // 
             // textBox5
             // 
@@ -114,7 +114,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(1293, 49);
             this.textBox5.TabIndex = 4;
-            this.textBox5.Text = "Time invested in reading documentation";
+            this.textBox5.Text = "Time invested in reading documentation is 0 hours and 0 minutes";
             // 
             // textBox6
             // 
@@ -126,7 +126,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(1293, 49);
             this.textBox6.TabIndex = 5;
-            this.textBox6.Text = "Time invested in googling solutions";
+            this.textBox6.Text = "Time invested in googling solutions is 0 hours and 0 minutes";
             // 
             // textBox7
             // 
@@ -138,7 +138,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(1293, 49);
             this.textBox7.TabIndex = 6;
-            this.textBox7.Text = "Number of the books C# was read";
+            this.textBox7.Text = "Number of the books C# was read are 0";
             // 
             // button1
             // 
@@ -223,6 +223,7 @@
             this.checkBox5.Size = new System.Drawing.Size(28, 27);
             this.checkBox5.TabIndex = 21;
             this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.Click += new System.EventHandler(this.checkBox5_Click);
             // 
             // checkBox6
             // 
@@ -279,6 +280,7 @@
             this.button5.TabIndex = 27;
             this.button5.Text = "Reset";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -288,6 +290,7 @@
             this.button6.TabIndex = 28;
             this.button6.Text = "Reset";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -297,6 +300,7 @@
             this.button7.TabIndex = 29;
             this.button7.Text = "Reset";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
@@ -306,6 +310,7 @@
             this.button8.TabIndex = 30;
             this.button8.Text = "Reset";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -315,6 +320,7 @@
             this.button9.TabIndex = 31;
             this.button9.Text = "Reset";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // Form1
             // 
