@@ -157,6 +157,8 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(70, 49);
             this.textBox8.TabIndex = 14;
+            this.textBox8.Text = "0";
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox8.Click += new System.EventHandler(this.textBox8_Click);
             // 
             // textBox9
@@ -166,6 +168,8 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(70, 49);
             this.textBox9.TabIndex = 15;
+            this.textBox9.Text = "0";
+            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox9.Click += new System.EventHandler(this.textBox9_Click);
             // 
             // label1
