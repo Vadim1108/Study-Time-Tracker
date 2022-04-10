@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Study_Time_Tracker
 {
     public partial class Form1 : Form
     {
-        string path = @"C:\Study Time Tracker"; // Fields
+        string path = @"Study Time Tracker"; // Fields
         int tempHours = 0;
         int tempMinutes = 0;
         public Form1() // Default
