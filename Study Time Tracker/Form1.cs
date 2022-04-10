@@ -42,7 +42,7 @@ namespace Study_Time_Tracker
             textBox6.Text = $"Time invested in googling solutions is {ReadFile($@"{path}\{6}\hours.txt")} hours and {ReadFile($@"{path}\{6}\minutes.txt")} minutes";
             textBox7.Text = $"Time invested in reading documentation is {ReadFile($@"{path}\{7}\hours.txt")} hours and {ReadFile($@"{path}\{7}\minutes.txt")} minutes";
         }
-        private void button1_Click(object sender, EventArgs e) // Main Button
+        private void button1_Click(object sender, EventArgs e) // Button Add
         {
             if (checkBox1.Checked)
             {
@@ -116,7 +116,7 @@ namespace Study_Time_Tracker
         }
         private void button9_Click(object sender, EventArgs e) // Reset Button 7
         {
-            Reset($@"{path}\{1}\hours.txt", $@"{path}\{1}\minutes.txt");
+            Reset($@"{path}\{7}\hours.txt", $@"{path}\{7}\minutes.txt");
             textBox7.Text = $"Time invested in reading documentation is {ReadFile($@"{path}\{7}\hours.txt")} hours and {ReadFile($@"{path}\{7}\minutes.txt")} minutes";
         }
         private void checkBox2_Click(object sender, EventArgs e) // Click CheckBox 2
@@ -190,10 +190,8 @@ namespace Study_Time_Tracker
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) // Closing form
         {
-            if (MessageBox.Show("Delete all data?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                Directory.Delete(path, true);
-            }
+            DialogResult result = MessageBox.Show("Delete all data?", "Message", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes) {Directory.Delete(path, true);}
         }
         string ReadFile(string pathToFile) // Own Method 
         {
@@ -223,11 +221,8 @@ namespace Study_Time_Tracker
         void CalculateNumber(string pathminutes) // Own Method
         {
             int inputMinutes = Convert.ToInt32(textBox8.Text); // Read input
-
-            tempMinutes = Convert.ToInt32(pathminutes) + inputMinutes; //Calculate
-
-            File.WriteAllText(pathminutes, Convert.ToString(tempMinutes));  // Save new value into file
-
+            tempMinutes = ReadFileInt(pathminutes) + inputMinutes; //Calculate
+            File.WriteAllText(pathminutes, Convert.ToString(tempMinutes));  // Saving
         }
         void Reset(string pathhours, string pathminutes) // Own Method
         {
