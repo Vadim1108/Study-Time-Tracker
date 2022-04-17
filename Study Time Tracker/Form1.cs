@@ -1,20 +1,27 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace Study_Time_Tracker
 {
     public partial class Form1 : Form
     {
-        string path = @"Study Time Tracker"; // Fields
-        int tempHours = 0;
-        int tempMinutes = 0;
+        private SQLiteConnection DB;
         public Form1() // Default
         {
             InitializeComponent();
         }
+
+        string path = @"Study Time Tracker"; // Fields
+        int tempHours = 0;
+        int tempMinutes = 0;
+
         private void Form1_Load(object sender, EventArgs e) // Loading form
         {
+            DB = new SQLiteConnection("Data Source=data.db");
+            DB.Open();
+
             if (!Directory.Exists(path))
             {
                 for (int i = 0; i < 8; i++) // Create folders with files and write inside 0;
@@ -34,7 +41,19 @@ namespace Study_Time_Tracker
             textBox5.Text = $"Number of the books C# was read are {ReadFile($@"{path}\{5}\minutes.txt")}";
             textBox6.Text = $"Time invested in googling solutions is {ReadFile($@"{path}\{6}\hours.txt")} hours and {ReadFile($@"{path}\{6}\minutes.txt")} minutes";
             textBox7.Text = $"Time invested in reading documentation is {ReadFile($@"{path}\{7}\hours.txt")} hours and {ReadFile($@"{path}\{7}\minutes.txt")} minutes";
+
+
+
+            textBox1.Text = SearchNumbers();
         }
+
+        string SearchNumbers()
+        {
+            SQLiteCommand Search = DB.CreateCommand();
+            Search.CommandText = "select count(*) from DataStore";
+            return Search.ExecuteScalar().ToString();
+        }
+
         private void button1_Click(object sender, EventArgs e) // Button Add
         {
             if (checkBox1.Checked)
@@ -185,6 +204,7 @@ namespace Study_Time_Tracker
         {
             DialogResult result = MessageBox.Show("Delete all data?", "Message", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes) {Directory.Delete(path, true);}
+            DB.Close();
         }
         string ReadFile(string pathToFile) // Own Method 
         {
