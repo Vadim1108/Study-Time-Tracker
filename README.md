@@ -4,8 +4,7 @@
 
 Program to track hours spend for studing C# in different ways.
 
-Used
-- .NET Framework 
+Used:
 - C#
-- SQLite
+- SQLite Database
 - Windows Forms
