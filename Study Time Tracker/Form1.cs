@@ -7,43 +7,56 @@ namespace Study_Time_Tracker
 {
     public partial class Form1 : Form
     {
-        private SQLiteConnection DB;
-
-        public Form1() // Default
+        public Form1()
         {
             InitializeComponent();
         }
 
-        string path = @"Study Time Tracker"; // Fields
         int tempHours = 0;
         int tempMinutes = 0;
+        private SQLiteConnection DB;
 
-        private void Form1_Load(object sender, EventArgs e) // Loading form
+        private void Form1_Load(object sender, EventArgs e)
         {
             DB = new SQLiteConnection("Data Source=data.db");
             DB.Open();
 
-            if (!Directory.Exists(path))
-            {
-                for (int i = 0; i < 8; i++) // Create folders with files and write inside 0;
-                {
-                    Directory.CreateDirectory($@"{path}\{i}");
-                    File.Create($@"{path}\{i}\hours.txt").Close();
-                    File.WriteAllText($@"{path}\{i}\hours.txt", "0");
-                    File.Create($@"{path}\{i}\minutes.txt").Close();
-                    File.WriteAllText($@"{path}\{i}\minutes.txt", "0");
-                }
-            }
+            UpdateTextBox1();
+            UpdateTextBox2();
+            UpdateTextBox3();
+            UpdateTextBox4();
+            UpdateTextBox5();
+            UpdateTextBox6();
+            UpdateTextBox7();
+        }
 
-            //textBox1.Text = $"Time invested in watching tutorials C# is {ReadFile($@"{path}\{1}\hours.txt")} hours and {ReadFile($@"{path}\{1}\minutes.txt")} minutes";
-            textBox2.Text = $"Number of projects made are {ReadFile($@"{path}\{2}\minutes.txt")}";
-            textBox3.Text = $"Time invested in projects is {ReadFile($@"{path}\{3}\hours.txt")} hours and {ReadFile($@"{path}\{3}\minutes.txt")} minutes";
-            textBox4.Text = $"Time invested in reading books C# is {ReadFile($@"{path}\{4}\hours.txt")} hours and {ReadFile($@"{path}\{4}\minutes.txt")} minutes";
-            textBox5.Text = $"Number of the books C# was read are {ReadFile($@"{path}\{5}\minutes.txt")}";
-            textBox6.Text = $"Time invested in googling solutions is {ReadFile($@"{path}\{6}\hours.txt")} hours and {ReadFile($@"{path}\{6}\minutes.txt")} minutes";
-            textBox7.Text = $"Time invested in reading documentation is {ReadFile($@"{path}\{7}\hours.txt")} hours and {ReadFile($@"{path}\{7}\minutes.txt")} minutes";
-
+        void UpdateTextBox1()
+        {
             textBox1.Text = $@"Time invested in watching tutorials C# is {GetValue("hours1")} hours and {GetValue("minutes1")} minutes";
+        }
+        void UpdateTextBox2()
+        {
+            textBox2.Text = $"Number of projects made are {GetValue("number2")}";
+        }
+        void UpdateTextBox3()
+        {
+            textBox3.Text = $"Time invested in projects is {GetValue("hours3")} hours and {GetValue("minutes3")} minutes";
+        }
+        void UpdateTextBox4()
+        {
+            textBox4.Text = $"Time invested in reading books C# is {GetValue("hours4")} hours and {GetValue("minutes4")} minutes";
+        }
+        void UpdateTextBox5()
+        {
+            textBox5.Text = $"Number of the books C# was read are {GetValue("number5")}";
+        }
+        void UpdateTextBox6()
+        {
+            textBox6.Text = $"Time invested in googling solutions is {GetValue("hours6")} hours and {GetValue("minutes6")} minutes";
+        }
+        void UpdateTextBox7()
+        {
+            textBox7.Text = $"Time invested in reading documentation is {GetValue("hours7")} hours and {GetValue("minutes7")} minutes";
         }
 
         string GetValue(string dataName) // Read from DB and return string value
@@ -56,100 +69,174 @@ namespace Study_Time_Tracker
             else
                 return "";
         }
-
-        void WriteValue(string dataName) // Read from DB and return string value
+        void WriteValue(string dataName, string dataValue) // Update value to DB
         {
             SQLiteCommand CMD = DB.CreateCommand();
-            CMD.CommandText = $@"select Name from DataStore where Name = '{dataName}'";
-            
-            
+            CMD.CommandText = $@"update DataStore set Dates = {dataValue} where Name = '{dataName}'";
+            CMD.ExecuteNonQuery();
         }
-
-        string SearchNumbers()
+        void ResetValue(string dataName) // Update value with 0 to DB
         {
-            SQLiteCommand Search = DB.CreateCommand();
-            Search.CommandText = "select count(*) from DataStore";
-            return Search.ExecuteScalar().ToString();
+            SQLiteCommand CMD = DB.CreateCommand();
+            CMD.CommandText = $@"update DataStore set Dates = 0 where Name = '{dataName}'";
+            CMD.ExecuteNonQuery();
+        }
+        void Calculate(string hours, string minutes)
+        {
+            int inputHours = Convert.ToInt32(textBox9.Text); // Read input fields
+            int inputMinutes = Convert.ToInt32(textBox8.Text);
+
+            tempHours = Convert.ToInt32(GetValue(hours)) + inputHours; // Calculate hours and minutes
+            tempMinutes = Convert.ToInt32(GetValue(minutes)) + inputMinutes;
+
+            if (tempMinutes >= 60) // Sorting time if minutes >= 60;
+            {
+                tempHours++;
+                tempMinutes = tempMinutes - 60;
+            }
+
+            WriteValue(hours, Convert.ToString(tempHours));
+            WriteValue(minutes, Convert.ToString(tempMinutes));
+
+        }
+        void CalculateNumber(string number)
+        {
+            int inputMinutes = Convert.ToInt32(textBox8.Text); // Read input
+            tempMinutes = Convert.ToInt32(GetValue(number)) + inputMinutes; //Calculate
+            WriteValue(number, Convert.ToString(tempMinutes)); // Saving
+        }
+        void CalculateBack(string hours, string minutes)
+        {
+            int inputHours = Convert.ToInt32(textBox9.Text);
+            int inputMinutes = Convert.ToInt32(textBox8.Text);
+
+            if (Convert.ToInt32(GetValue(hours)) <= 0 & Convert.ToInt32(GetValue(minutes)) < inputMinutes
+                || Convert.ToInt32(GetValue(hours)) < inputHours
+                || Convert.ToInt32(GetValue(hours)) <= inputHours & Convert.ToInt32(GetValue(minutes)) < inputMinutes) // Check condition
+            {
+                MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
+            }
+            else if (Convert.ToInt32(GetValue(minutes)) < 60) // Add 60 to minutes to be possible to calculate
+            {
+                int a = Convert.ToInt32(GetValue(minutes)) + 60;
+                WriteValue(minutes, Convert.ToString(a));
+
+                int b = Convert.ToInt32(GetValue(hours)) - 1; // Take 1 hour from hours
+                WriteValue(hours, Convert.ToString(b));
+
+                tempMinutes = Convert.ToInt32(GetValue(minutes)) - inputMinutes; // Calculate
+                tempHours = Convert.ToInt32(GetValue(hours)) - inputHours;
+
+                if (tempMinutes >= 60) // Sort time
+                {
+                    tempHours++;
+                    tempMinutes = tempMinutes - 60;
+                }
+
+                WriteValue(minutes, Convert.ToString(tempMinutes));
+                WriteValue(hours, Convert.ToString(tempHours));
+
+            }
+        }
+        void CalculateBackNumber(string minutes)
+        {
+            int inputMinutes = Convert.ToInt32(textBox8.Text);
+
+            if (Convert.ToInt32(GetValue(minutes)) <= 0
+                || Convert.ToInt32(GetValue(minutes)) < inputMinutes) // Check condition
+            {
+                MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
+            }
+            else
+            {
+                tempMinutes = Convert.ToInt32(GetValue(minutes)) - inputMinutes; // Calculate
+                WriteValue(minutes, Convert.ToString(tempMinutes));
+            }
         }
 
         private void button1_Click(object sender, EventArgs e) // Button Add
         {
             if (checkBox1.Checked)
             {
-                Calculate($@"{path}\{1}\hours.txt", $@"{path}\{1}\minutes.txt");
-                textBox1.Text = $"Time invested in watching tutorials C# is {ReadFile($@"{path}\{1}\hours.txt")} hours and {ReadFile($@"{path}\{1}\minutes.txt")} minutes";
+                Calculate("hours1", "minutes1");
+                UpdateTextBox1();
             }
             else if (checkBox2.Checked)
             {
-                CalculateNumber($@"{path}\{2}\minutes.txt");
-                textBox2.Text = $"Number of projects made are {ReadFile($@"{path}\{2}\minutes.txt")}";
+                CalculateNumber("number2");
+                UpdateTextBox2();
             }
             else if (checkBox3.Checked)
             {
-                Calculate($@"{path}\{3}\hours.txt", $@"{path}\{3}\minutes.txt");
-                textBox3.Text = $"Time invested in projects is {ReadFile($@"{path}\{3}\hours.txt")} hours and {ReadFile($@"{path}\{3}\minutes.txt")} minutes";
+                Calculate("hours3", "minutes3");
+                UpdateTextBox3();
             }
             else if (checkBox4.Checked)
             {
-                Calculate($@"{path}\{4}\hours.txt", $@"{path}\{4}\minutes.txt");
-                textBox4.Text = $"Time invested in reading books C# is {ReadFile($@"{path}\{4}\hours.txt")} hours and {ReadFile($@"{path}\{4}\minutes.txt")} minutes";
+                Calculate("hours4", "minutes4");
+                UpdateTextBox4();
             }
             else if (checkBox5.Checked)
             {
-                CalculateNumber($@"{path}\{5}\minutes.txt");
-                textBox5.Text = $"Number of the books C# was read are {ReadFile($@"{path}\{5}\minutes.txt")}";
+                CalculateNumber("number5");
+                UpdateTextBox5();
             }
             else if (checkBox6.Checked)
             {
-                Calculate($@"{path}\{6}\hours.txt", $@"{path}\{6}\minutes.txt");
-                textBox6.Text = $"Time invested in googling solutions is {ReadFile($@"{path}\{6}\hours.txt")} hours and {ReadFile($@"{path}\{6}\minutes.txt")} minutes";
+                Calculate("hours6", "minutes6");
+                UpdateTextBox6();
             }
             else if (checkBox7.Checked)
             {
-                Calculate($@"{path}\{7}\hours.txt", $@"{path}\{7}\minutes.txt");
-                textBox7.Text = $"Time invested in reading documentation is {ReadFile($@"{path}\{7}\hours.txt")} hours and {ReadFile($@"{path}\{7}\minutes.txt")} minutes";
+                Calculate("hours7", "minutes7");
+                UpdateTextBox7();
             }
             else // Error if you forget to choose ticker and press add button
             {
                 MessageBox.Show("You forget to select ticker", "Error", MessageBoxButtons.OK);
             }
         }
-        private void button3_Click(object sender, EventArgs e) // Reset Button 1
+        private void ResetButton1_Click(object sender, EventArgs e)
         {
-            Reset($@"{path}\{1}\hours.txt", $@"{path}\{1}\minutes.txt");
-            textBox1.Text = $"Time invested in watching tutorials C# is {ReadFile($@"{path}\{1}\hours.txt")} hours and {ReadFile($@"{path}\{1}\minutes.txt")} minutes";
+            ResetValue("hours1");
+            ResetValue("minutes1");
+            UpdateTextBox1();
         }
         private void button4_Click(object sender, EventArgs e) // Reset Button 2
         {
-            File.WriteAllText($@"{path}\{2}\minutes.txt", "0");
-            textBox2.Text = $"Number of projects made are {ReadFile($@"{path}\{2}\minutes.txt")}";
+            ResetValue("number2");
+            UpdateTextBox2();
         }
         private void button5_Click(object sender, EventArgs e)  // Reset Button 3
         {
-            Reset($@"{path}\{3}\hours.txt", $@"{path}\{3}\minutes.txt");
-            textBox3.Text = $"Time invested in projects is {ReadFile($@"{path}\{3}\hours.txt")} hours and {ReadFile($@"{path}\{3}\minutes.txt")} minutes";
+            ResetValue("hours3");
+            ResetValue("minutes3");
+            UpdateTextBox3();
         }
         private void button6_Click(object sender, EventArgs e) // Reset Button 4
         {
-            Reset($@"{path}\{4}\hours.txt", $@"{path}\{4}\minutes.txt");
-            textBox4.Text = $"Time invested in reading books C# is {ReadFile($@"{path}\{4}\hours.txt")} hours and {ReadFile($@"{path}\{4}\minutes.txt")} minutes";
+            ResetValue("hours4");
+            ResetValue("minutes4");
+            UpdateTextBox4();
         }
         private void button7_Click(object sender, EventArgs e) // Reset Button 5
         {
-            File.WriteAllText($@"{path}\{5}\minutes.txt", "0");
-            textBox5.Text = $"Number of the books C# was read are {ReadFile($@"{path}\{5}\minutes.txt")}";
+            ResetValue("number5");
+            UpdateTextBox5();
         }
         private void button8_Click(object sender, EventArgs e) // Reset Button 6
         {
-            Reset($@"{path}\{6}\hours.txt", $@"{path}\{6}\minutes.txt");
-            textBox6.Text = $"Time invested in googling solutions is {ReadFile($@"{path}\{6}\hours.txt")} hours and {ReadFile($@"{path}\{6}\minutes.txt")} minutes";
+            ResetValue("hours6");
+            ResetValue("minutes6");
+            UpdateTextBox6();
         }
         private void button9_Click(object sender, EventArgs e) // Reset Button 7
         {
-            Reset($@"{path}\{7}\hours.txt", $@"{path}\{7}\minutes.txt");
-            textBox7.Text = $"Time invested in reading documentation is {ReadFile($@"{path}\{7}\hours.txt")} hours and {ReadFile($@"{path}\{7}\minutes.txt")} minutes";
+            ResetValue("hours7");
+            ResetValue("minutes7");
+            UpdateTextBox7();
         }
-        private void checkBox2_Click(object sender, EventArgs e) // Click CheckBox 2
+        private void checkBox2_Click(object sender, EventArgs e)
         {
             textBox9.Enabled = false;
 
@@ -158,15 +245,7 @@ namespace Study_Time_Tracker
                 textBox9.Enabled = true;
             }
         }
-        private void textBox9_Click(object sender, EventArgs e) // Clear Text Input Field (Hours)
-        {
-            textBox9.Text = "";
-        }
-        private void textBox8_Click(object sender, EventArgs e) // Clear Text Input Field (Minutes)
-        {
-            textBox8.Text = "";
-        }
-        private void checkBox5_Click(object sender, EventArgs e) // Click CheckBox 5
+        private void checkBox5_Click(object sender, EventArgs e)
         {
             textBox9.Enabled = false;
 
@@ -175,43 +254,51 @@ namespace Study_Time_Tracker
                 textBox9.Enabled = true;
             }
         }
+        private void textBox9_Click(object sender, EventArgs e)
+        {
+            textBox9.Text = "";
+        }
+        private void textBox8_Click(object sender, EventArgs e) 
+        {
+            textBox8.Text = "";
+        }
+
         private void button2_Click(object sender, EventArgs e) // Button Back
         {
             if (checkBox1.Checked)
             {
-                CalculateBack($@"{path}\{1}\hours.txt", $@"{path}\{1}\minutes.txt");
-                textBox1.Text = $"Time invested in watching tutorials C# is {ReadFile($@"{path}\{1}\hours.txt")} hours and {ReadFile($@"{path}\{1}\minutes.txt")} minutes";
+                CalculateBack("hours1","minutes1");
+                UpdateTextBox1();
             }
             else if (checkBox2.Checked)
             {
-                CalculateBackNumber($@"{path}\{2}\minutes.txt");
-                textBox2.Text = $"Number of projects made are {ReadFile($@"{path}\{2}\minutes.txt")}";
+                CalculateBackNumber("number2");
+                UpdateTextBox2();
             }
             else if (checkBox3.Checked)
             {
-                CalculateBack($@"{path}\{3}\hours.txt", $@"{path}\{3}\minutes.txt");
-                textBox3.Text = $"Time invested in projects is {ReadFile($@"{path}\{3}\hours.txt")} hours and {ReadFile($@"{path}\{3}\minutes.txt")} minutes";
+                CalculateBack("hours3", "minutes3");
+                UpdateTextBox3();
             }
             else if (checkBox4.Checked)
             {
-                CalculateBack($@"{path}\{4}\hours.txt", $@"{path}\{4}\minutes.txt");
-                textBox4.Text = $"Time invested in reading books C# is {ReadFile($@"{path}\{4}\hours.txt")} hours and {ReadFile($@"{path}\{4}\minutes.txt")} minutes";
+                CalculateBack("hours4", "minutes4");
+                UpdateTextBox4();
             }
             else if (checkBox5.Checked)
             {
-                CalculateBackNumber($@"{path}\{5}\minutes.txt");
-                textBox5.Text = $"Number of the books C# was read are {ReadFile($@"{path}\{5}\minutes.txt")}";
-
+                CalculateBackNumber("number5");
+                UpdateTextBox5();
             }
             else if (checkBox6.Checked)
             {
-                CalculateBack($@"{path}\{6}\hours.txt", $@"{path}\{6}\minutes.txt");
-                textBox6.Text = $"Time invested in googling solutions is {ReadFile($@"{path}\{6}\hours.txt")} hours and {ReadFile($@"{path}\{6}\minutes.txt")} minutes";
+                CalculateBack("hours6", "minutes6");
+                UpdateTextBox6();
             }
             else if (checkBox7.Checked)
             {
-                CalculateBack($@"{path}\{7}\hours.txt", $@"{path}\{7}\minutes.txt");
-                textBox7.Text = $"Time invested in reading documentation is {ReadFile($@"{path}\{7}\hours.txt")} hours and {ReadFile($@"{path}\{7}\minutes.txt")} minutes";
+                CalculateBack("hours7", "minutes7");
+                UpdateTextBox7();
             }
             else // Error
             {
@@ -220,93 +307,8 @@ namespace Study_Time_Tracker
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) // Closing form
         {
-            DialogResult result = MessageBox.Show("Delete all data?", "Message", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes) {Directory.Delete(path, true);}
             DB.Close();
         }
-        string ReadFile(string pathToFile) // Own Method 
-        {
-            return File.ReadAllText(pathToFile);
-        }
-        int ReadFileInt(string pathToFile) // Own Method
-        {
-            return Convert.ToInt32(File.ReadAllText(pathToFile));
-        }
-        void Calculate(string pathhours, string pathminutes) // Own Method
-        {
-            int inputHours = Convert.ToInt32(textBox9.Text); // Read input
-            int inputMinutes = Convert.ToInt32(textBox8.Text);
-
-            tempHours = Convert.ToInt32(File.ReadAllText(pathhours)) + inputHours; // Calculate hours and minutes
-            tempMinutes = Convert.ToInt32(File.ReadAllText(pathminutes)) + inputMinutes;
-
-            if (tempMinutes >= 60) // Sorting time if minutes >= 60;
-            {
-                tempHours++;
-                tempMinutes = tempMinutes - 60;
-            }
-
-            File.WriteAllText(pathhours, Convert.ToString(tempHours)); // Save values into files
-            File.WriteAllText(pathminutes, Convert.ToString(tempMinutes));
-        }
-        void CalculateNumber(string pathminutes) // Own Method
-        {
-            int inputMinutes = Convert.ToInt32(textBox8.Text); // Read input
-            tempMinutes = ReadFileInt(pathminutes) + inputMinutes; //Calculate
-            File.WriteAllText(pathminutes, Convert.ToString(tempMinutes));  // Saving
-        }
-        void Reset(string pathhours, string pathminutes) // Own Method
-        {
-            File.WriteAllText(pathminutes, "0");
-            File.WriteAllText(pathhours, "0");
-        }
-        void CalculateBack(string pathhours, string pathminutes) // Own Method
-        {
-            int inputHours = Convert.ToInt32(textBox9.Text);
-            int inputMinutes = Convert.ToInt32(textBox8.Text);
-
-            if (ReadFileInt(pathhours) <= 0 & ReadFileInt(pathminutes) < inputMinutes
-                || ReadFileInt(pathhours) < inputHours
-                || ReadFileInt(pathhours) <= inputHours & ReadFileInt(pathminutes) < inputMinutes) // Check condition
-            {
-                MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
-            }
-            else if (ReadFileInt(pathminutes) < 60) // Add 60 to minutes to be possible to calculate
-            {
-                int a = ReadFileInt(pathminutes) + 60;
-                File.WriteAllText(pathminutes, Convert.ToString(a));
-
-                int b = ReadFileInt(pathhours) - 1; // Take 1 hour from hours
-                File.WriteAllText(pathhours, Convert.ToString(b));
-
-                tempMinutes = ReadFileInt(pathminutes) - inputMinutes; // Calculate
-                tempHours = ReadFileInt(pathhours) - inputHours;
-
-                if (tempMinutes >= 60) // Sort time
-                {
-                    tempHours++;
-                    tempMinutes = tempMinutes - 60;
-                }
-
-                File.WriteAllText(pathminutes, Convert.ToString(tempMinutes)); // Saving
-                File.WriteAllText(pathhours, Convert.ToString(tempHours));
-
-            }
-        }
-        void CalculateBackNumber (string pathminutes) // Own Method
-        {
-            int inputMinutes = Convert.ToInt32(textBox8.Text);
-
-            if (ReadFileInt(pathminutes) <= 0 
-                || ReadFileInt(pathminutes) < inputMinutes) // Check condition
-            {
-                MessageBox.Show("No possible to go back", "Error", MessageBoxButtons.OK);
-            }
-            else
-            {
-                tempMinutes = ReadFileInt(pathminutes) - inputMinutes; // Calculate
-                File.WriteAllText(pathminutes, Convert.ToString(tempMinutes)); // Saving
-            }
-        }
+        
     }
 }

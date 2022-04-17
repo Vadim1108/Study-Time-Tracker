@@ -47,7 +47,7 @@
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.ResetButton1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -257,15 +257,15 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // ResetButton1
             // 
-            this.button3.Location = new System.Drawing.Point(1355, 18);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(149, 49);
-            this.button3.TabIndex = 25;
-            this.button3.Text = "Reset";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.ResetButton1.Location = new System.Drawing.Point(1355, 18);
+            this.ResetButton1.Name = "ResetButton1";
+            this.ResetButton1.Size = new System.Drawing.Size(149, 49);
+            this.ResetButton1.TabIndex = 25;
+            this.ResetButton1.Text = "Reset";
+            this.ResetButton1.UseVisualStyleBackColor = true;
+            this.ResetButton1.Click += new System.EventHandler(this.ResetButton1_Click);
             // 
             // button4
             // 
@@ -338,7 +338,7 @@
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.ResetButton1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox7);
             this.Controls.Add(this.checkBox6);
@@ -391,7 +391,7 @@
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button ResetButton1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
