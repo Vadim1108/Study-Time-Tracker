@@ -8,6 +8,7 @@ namespace Study_Time_Tracker
     public partial class Form1 : Form
     {
         private SQLiteConnection DB;
+
         public Form1() // Default
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace Study_Time_Tracker
                 }
             }
 
-            textBox1.Text = $"Time invested in watching tutorials C# is {ReadFile($@"{path}\{1}\hours.txt")} hours and {ReadFile($@"{path}\{1}\minutes.txt")} minutes";
+            //textBox1.Text = $"Time invested in watching tutorials C# is {ReadFile($@"{path}\{1}\hours.txt")} hours and {ReadFile($@"{path}\{1}\minutes.txt")} minutes";
             textBox2.Text = $"Number of projects made are {ReadFile($@"{path}\{2}\minutes.txt")}";
             textBox3.Text = $"Time invested in projects is {ReadFile($@"{path}\{3}\hours.txt")} hours and {ReadFile($@"{path}\{3}\minutes.txt")} minutes";
             textBox4.Text = $"Time invested in reading books C# is {ReadFile($@"{path}\{4}\hours.txt")} hours and {ReadFile($@"{path}\{4}\minutes.txt")} minutes";
@@ -42,9 +43,26 @@ namespace Study_Time_Tracker
             textBox6.Text = $"Time invested in googling solutions is {ReadFile($@"{path}\{6}\hours.txt")} hours and {ReadFile($@"{path}\{6}\minutes.txt")} minutes";
             textBox7.Text = $"Time invested in reading documentation is {ReadFile($@"{path}\{7}\hours.txt")} hours and {ReadFile($@"{path}\{7}\minutes.txt")} minutes";
 
+            textBox1.Text = $@"Time invested in watching tutorials C# is {GetValue("hours1")} hours and {GetValue("minutes1")} minutes";
+        }
 
+        string GetValue(string dataName) // Read from DB and return string value
+        {
+            SQLiteCommand CMD = DB.CreateCommand();
+            CMD.CommandText = $@"select Dates from DataStore where Name = '{dataName}'";
+            SQLiteDataReader SQL = CMD.ExecuteReader();
+            if (SQL.Read())
+                return $@"{SQL["Dates"]}";
+            else
+                return "";
+        }
 
-            textBox1.Text = SearchNumbers();
+        void WriteValue(string dataName) // Read from DB and return string value
+        {
+            SQLiteCommand CMD = DB.CreateCommand();
+            CMD.CommandText = $@"select Name from DataStore where Name = '{dataName}'";
+            
+            
         }
 
         string SearchNumbers()
