@@ -35,9 +35,9 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.AddButton = new System.Windows.Forms.Button();
+            this.InputMinutes = new System.Windows.Forms.TextBox();
+            this.InputHours = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -46,14 +46,14 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BackButton = new System.Windows.Forms.Button();
             this.ResetButton1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.ResetButton2 = new System.Windows.Forms.Button();
+            this.ResetButton3 = new System.Windows.Forms.Button();
+            this.ResetButton4 = new System.Windows.Forms.Button();
+            this.ResetButton5 = new System.Windows.Forms.Button();
+            this.ResetButton6 = new System.Windows.Forms.Button();
+            this.ResetButton7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -140,37 +140,37 @@
             this.textBox5.TabIndex = 6;
             this.textBox5.Text = "Number of the books C# was read are 0";
             // 
-            // button1
+            // AddButton
             // 
-            this.button1.Location = new System.Drawing.Point(1205, 448);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 48);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.AddButton.Location = new System.Drawing.Point(1205, 448);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(149, 48);
+            this.AddButton.TabIndex = 7;
+            this.AddButton.Text = "Add";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // textBox8
+            // InputMinutes
             // 
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox8.Location = new System.Drawing.Point(1129, 447);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(70, 49);
-            this.textBox8.TabIndex = 14;
-            this.textBox8.Text = "0";
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox8.Click += new System.EventHandler(this.textBox8_Click);
+            this.InputMinutes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InputMinutes.Location = new System.Drawing.Point(1129, 447);
+            this.InputMinutes.Name = "InputMinutes";
+            this.InputMinutes.Size = new System.Drawing.Size(70, 49);
+            this.InputMinutes.TabIndex = 14;
+            this.InputMinutes.Text = "0";
+            this.InputMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.InputMinutes.Click += new System.EventHandler(this.InputMinutes_Click);
             // 
-            // textBox9
+            // InputHours
             // 
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox9.Location = new System.Drawing.Point(1053, 447);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(70, 49);
-            this.textBox9.TabIndex = 15;
-            this.textBox9.Text = "0";
-            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox9.Click += new System.EventHandler(this.textBox9_Click);
+            this.InputHours.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InputHours.Location = new System.Drawing.Point(1053, 447);
+            this.InputHours.Name = "InputHours";
+            this.InputHours.Size = new System.Drawing.Size(70, 49);
+            this.InputHours.TabIndex = 15;
+            this.InputHours.Text = "0";
+            this.InputHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.InputHours.Click += new System.EventHandler(this.InputHours_Click);
             // 
             // label1
             // 
@@ -247,15 +247,15 @@
             this.checkBox7.TabIndex = 23;
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // BackButton
             // 
-            this.button2.Location = new System.Drawing.Point(1355, 446);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(149, 48);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Back";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BackButton.Location = new System.Drawing.Point(1355, 446);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(149, 48);
+            this.BackButton.TabIndex = 24;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // ResetButton1
             // 
@@ -267,79 +267,79 @@
             this.ResetButton1.UseVisualStyleBackColor = true;
             this.ResetButton1.Click += new System.EventHandler(this.ResetButton1_Click);
             // 
-            // button4
+            // ResetButton2
             // 
-            this.button4.Location = new System.Drawing.Point(1355, 72);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(149, 49);
-            this.button4.TabIndex = 26;
-            this.button4.Text = "Reset";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.ResetButton2.Location = new System.Drawing.Point(1355, 72);
+            this.ResetButton2.Name = "ResetButton2";
+            this.ResetButton2.Size = new System.Drawing.Size(149, 49);
+            this.ResetButton2.TabIndex = 26;
+            this.ResetButton2.Text = "Reset";
+            this.ResetButton2.UseVisualStyleBackColor = true;
+            this.ResetButton2.Click += new System.EventHandler(this.ResetButton2_Click);
             // 
-            // button5
+            // ResetButton3
             // 
-            this.button5.Location = new System.Drawing.Point(1355, 126);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(149, 49);
-            this.button5.TabIndex = 27;
-            this.button5.Text = "Reset";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.ResetButton3.Location = new System.Drawing.Point(1355, 126);
+            this.ResetButton3.Name = "ResetButton3";
+            this.ResetButton3.Size = new System.Drawing.Size(149, 49);
+            this.ResetButton3.TabIndex = 27;
+            this.ResetButton3.Text = "Reset";
+            this.ResetButton3.UseVisualStyleBackColor = true;
+            this.ResetButton3.Click += new System.EventHandler(this.ResetButton3_Click);
             // 
-            // button6
+            // ResetButton4
             // 
-            this.button6.Location = new System.Drawing.Point(1355, 178);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(149, 49);
-            this.button6.TabIndex = 28;
-            this.button6.Text = "Reset";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.ResetButton4.Location = new System.Drawing.Point(1355, 178);
+            this.ResetButton4.Name = "ResetButton4";
+            this.ResetButton4.Size = new System.Drawing.Size(149, 49);
+            this.ResetButton4.TabIndex = 28;
+            this.ResetButton4.Text = "Reset";
+            this.ResetButton4.UseVisualStyleBackColor = true;
+            this.ResetButton4.Click += new System.EventHandler(this.ResetButton4_Click);
             // 
-            // button7
+            // ResetButton5
             // 
-            this.button7.Location = new System.Drawing.Point(1355, 233);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(149, 49);
-            this.button7.TabIndex = 29;
-            this.button7.Text = "Reset";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.ResetButton5.Location = new System.Drawing.Point(1355, 233);
+            this.ResetButton5.Name = "ResetButton5";
+            this.ResetButton5.Size = new System.Drawing.Size(149, 49);
+            this.ResetButton5.TabIndex = 29;
+            this.ResetButton5.Text = "Reset";
+            this.ResetButton5.UseVisualStyleBackColor = true;
+            this.ResetButton5.Click += new System.EventHandler(this.ResetButton5_Click);
             // 
-            // button8
+            // ResetButton6
             // 
-            this.button8.Location = new System.Drawing.Point(1355, 287);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(149, 49);
-            this.button8.TabIndex = 30;
-            this.button8.Text = "Reset";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.ResetButton6.Location = new System.Drawing.Point(1355, 287);
+            this.ResetButton6.Name = "ResetButton6";
+            this.ResetButton6.Size = new System.Drawing.Size(149, 49);
+            this.ResetButton6.TabIndex = 30;
+            this.ResetButton6.Text = "Reset";
+            this.ResetButton6.UseVisualStyleBackColor = true;
+            this.ResetButton6.Click += new System.EventHandler(this.ResetButton6_Click);
             // 
-            // button9
+            // ResetButton7
             // 
-            this.button9.Location = new System.Drawing.Point(1355, 342);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(149, 49);
-            this.button9.TabIndex = 31;
-            this.button9.Text = "Reset";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.ResetButton7.Location = new System.Drawing.Point(1355, 342);
+            this.ResetButton7.Name = "ResetButton7";
+            this.ResetButton7.Size = new System.Drawing.Size(149, 49);
+            this.ResetButton7.TabIndex = 31;
+            this.ResetButton7.Text = "Reset";
+            this.ResetButton7.UseVisualStyleBackColor = true;
+            this.ResetButton7.Click += new System.EventHandler(this.ResetButton7_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1520, 527);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.ResetButton7);
+            this.Controls.Add(this.ResetButton6);
+            this.Controls.Add(this.ResetButton5);
+            this.Controls.Add(this.ResetButton4);
+            this.Controls.Add(this.ResetButton3);
+            this.Controls.Add(this.ResetButton2);
             this.Controls.Add(this.ResetButton1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.checkBox7);
             this.Controls.Add(this.checkBox6);
             this.Controls.Add(this.checkBox5);
@@ -348,9 +348,9 @@
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.InputHours);
+            this.Controls.Add(this.InputMinutes);
+            this.Controls.Add(this.AddButton);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox7);
@@ -379,9 +379,9 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Button AddButton;
+        private System.Windows.Forms.TextBox InputMinutes;
+        private System.Windows.Forms.TextBox InputHours;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
@@ -390,14 +390,14 @@
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.Button ResetButton1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button ResetButton2;
+        private System.Windows.Forms.Button ResetButton3;
+        private System.Windows.Forms.Button ResetButton4;
+        private System.Windows.Forms.Button ResetButton5;
+        private System.Windows.Forms.Button ResetButton6;
+        private System.Windows.Forms.Button ResetButton7;
     }
 }
 

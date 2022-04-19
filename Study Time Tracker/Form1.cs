@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
@@ -15,7 +14,6 @@ namespace Study_Time_Tracker
         int tempHours = 0;
         int tempMinutes = 0;
         private SQLiteConnection DB;
-
         private void Form1_Load(object sender, EventArgs e)
         {
             DB = new SQLiteConnection("Data Source=data.db");
@@ -29,7 +27,10 @@ namespace Study_Time_Tracker
             UpdateTextBox6();
             UpdateTextBox7();
         }
-
+        
+        //
+        // Methods for updating text boxes
+        //
         void UpdateTextBox1()
         {
             textBox1.Text = $@"Time invested in watching tutorials C# is {GetValue("hours1")} hours and {GetValue("minutes1")} minutes";
@@ -57,9 +58,12 @@ namespace Study_Time_Tracker
         void UpdateTextBox7()
         {
             textBox7.Text = $"Time invested in reading documentation is {GetValue("hours7")} hours and {GetValue("minutes7")} minutes";
-        }
+        } 
 
-        string GetValue(string dataName) // Read from DB and return string value
+        //
+        // Methods for working with DB
+        //
+        string GetValue(string dataName) // Read value 
         {
             SQLiteCommand CMD = DB.CreateCommand();
             CMD.CommandText = $@"select Dates from DataStore where Name = '{dataName}'";
@@ -69,13 +73,13 @@ namespace Study_Time_Tracker
             else
                 return "";
         }
-        void WriteValue(string dataName, string dataValue) // Update value to DB
+        void WriteValue(string dataName, string dataValue) // Update value 
         {
             SQLiteCommand CMD = DB.CreateCommand();
             CMD.CommandText = $@"update DataStore set Dates = {dataValue} where Name = '{dataName}'";
             CMD.ExecuteNonQuery();
         }
-        void ResetValue(string dataName) // Update value with 0 to DB
+        void ResetValue(string dataName) // Update value with 0 
         {
             SQLiteCommand CMD = DB.CreateCommand();
             CMD.CommandText = $@"update DataStore set Dates = 0 where Name = '{dataName}'";
@@ -83,8 +87,8 @@ namespace Study_Time_Tracker
         }
         void Calculate(string hours, string minutes)
         {
-            int inputHours = Convert.ToInt32(textBox9.Text); // Read input fields
-            int inputMinutes = Convert.ToInt32(textBox8.Text);
+            int inputHours = Convert.ToInt32(InputHours.Text); // Read input fields
+            int inputMinutes = Convert.ToInt32(InputMinutes.Text);
 
             tempHours = Convert.ToInt32(GetValue(hours)) + inputHours; // Calculate hours and minutes
             tempMinutes = Convert.ToInt32(GetValue(minutes)) + inputMinutes;
@@ -95,20 +99,20 @@ namespace Study_Time_Tracker
                 tempMinutes = tempMinutes - 60;
             }
 
-            WriteValue(hours, Convert.ToString(tempHours));
+            WriteValue(hours, Convert.ToString(tempHours)); // Update data in DB
             WriteValue(minutes, Convert.ToString(tempMinutes));
 
         }
         void CalculateNumber(string number)
         {
-            int inputMinutes = Convert.ToInt32(textBox8.Text); // Read input
+            int inputMinutes = Convert.ToInt32(InputMinutes.Text); // Read input
             tempMinutes = Convert.ToInt32(GetValue(number)) + inputMinutes; //Calculate
             WriteValue(number, Convert.ToString(tempMinutes)); // Saving
         }
-        void CalculateBack(string hours, string minutes)
+        void CalculateBack(string hours, string minutes) // Revert input value
         {
-            int inputHours = Convert.ToInt32(textBox9.Text);
-            int inputMinutes = Convert.ToInt32(textBox8.Text);
+            int inputHours = Convert.ToInt32(InputHours.Text);
+            int inputMinutes = Convert.ToInt32(InputMinutes.Text);
 
             if (Convert.ToInt32(GetValue(hours)) <= 0 & Convert.ToInt32(GetValue(minutes)) < inputMinutes
                 || Convert.ToInt32(GetValue(hours)) < inputHours
@@ -140,7 +144,7 @@ namespace Study_Time_Tracker
         }
         void CalculateBackNumber(string minutes)
         {
-            int inputMinutes = Convert.ToInt32(textBox8.Text);
+            int inputMinutes = Convert.ToInt32(InputMinutes.Text);
 
             if (Convert.ToInt32(GetValue(minutes)) <= 0
                 || Convert.ToInt32(GetValue(minutes)) < inputMinutes) // Check condition
@@ -154,8 +158,20 @@ namespace Study_Time_Tracker
             }
         }
 
-        private void button1_Click(object sender, EventArgs e) // Button Add
+        //
+        // Event handlers 
+        //
+        private void AddButton_Click(object sender, EventArgs e)
         {
+            if (InputHours.Text == "")
+            {
+                InputHours.Text = "0";
+            }
+            if (InputMinutes.Text == "")
+            {
+                InputMinutes.Text = "0"; 
+            }
+
             if (checkBox1.Checked)
             {
                 Calculate("hours1", "minutes1");
@@ -196,78 +212,20 @@ namespace Study_Time_Tracker
                 MessageBox.Show("You forget to select ticker", "Error", MessageBoxButtons.OK);
             }
         }
-        private void ResetButton1_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
-            ResetValue("hours1");
-            ResetValue("minutes1");
-            UpdateTextBox1();
-        }
-        private void button4_Click(object sender, EventArgs e) // Reset Button 2
-        {
-            ResetValue("number2");
-            UpdateTextBox2();
-        }
-        private void button5_Click(object sender, EventArgs e)  // Reset Button 3
-        {
-            ResetValue("hours3");
-            ResetValue("minutes3");
-            UpdateTextBox3();
-        }
-        private void button6_Click(object sender, EventArgs e) // Reset Button 4
-        {
-            ResetValue("hours4");
-            ResetValue("minutes4");
-            UpdateTextBox4();
-        }
-        private void button7_Click(object sender, EventArgs e) // Reset Button 5
-        {
-            ResetValue("number5");
-            UpdateTextBox5();
-        }
-        private void button8_Click(object sender, EventArgs e) // Reset Button 6
-        {
-            ResetValue("hours6");
-            ResetValue("minutes6");
-            UpdateTextBox6();
-        }
-        private void button9_Click(object sender, EventArgs e) // Reset Button 7
-        {
-            ResetValue("hours7");
-            ResetValue("minutes7");
-            UpdateTextBox7();
-        }
-        private void checkBox2_Click(object sender, EventArgs e)
-        {
-            textBox9.Enabled = false;
-
-            if (!checkBox2.Checked)
+            if (InputHours.Text == "")
             {
-                textBox9.Enabled = true;
+                InputHours.Text = "0";
             }
-        }
-        private void checkBox5_Click(object sender, EventArgs e)
-        {
-            textBox9.Enabled = false;
-
-            if (!checkBox5.Checked)
+            if (InputMinutes.Text == "")
             {
-                textBox9.Enabled = true;
+                InputMinutes.Text = "0";
             }
-        }
-        private void textBox9_Click(object sender, EventArgs e)
-        {
-            textBox9.Text = "";
-        }
-        private void textBox8_Click(object sender, EventArgs e) 
-        {
-            textBox8.Text = "";
-        }
 
-        private void button2_Click(object sender, EventArgs e) // Button Back
-        {
             if (checkBox1.Checked)
             {
-                CalculateBack("hours1","minutes1");
+                CalculateBack("hours1", "minutes1");
                 UpdateTextBox1();
             }
             else if (checkBox2.Checked)
@@ -305,7 +263,73 @@ namespace Study_Time_Tracker
                 MessageBox.Show("You forget to select ticker", "Error", MessageBoxButtons.OK);
             }
         }
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e) // Closing form
+        private void ResetButton1_Click(object sender, EventArgs e)
+        {
+            ResetValue("hours1");
+            ResetValue("minutes1");
+            UpdateTextBox1();
+        }
+        private void ResetButton2_Click(object sender, EventArgs e)
+        {
+            ResetValue("number2");
+            UpdateTextBox2();
+        }
+        private void ResetButton3_Click(object sender, EventArgs e)
+        {
+            ResetValue("hours3");
+            ResetValue("minutes3");
+            UpdateTextBox3();
+        }
+        private void ResetButton4_Click(object sender, EventArgs e)
+        {
+            ResetValue("hours4");
+            ResetValue("minutes4");
+            UpdateTextBox4();
+        }
+        private void ResetButton5_Click(object sender, EventArgs e)
+        {
+            ResetValue("number5");
+            UpdateTextBox5();
+        }
+        private void ResetButton6_Click(object sender, EventArgs e)
+        {
+            ResetValue("hours6");
+            ResetValue("minutes6");
+            UpdateTextBox6();
+        }
+        private void ResetButton7_Click(object sender, EventArgs e)
+        {
+            ResetValue("hours7");
+            ResetValue("minutes7");
+            UpdateTextBox7();
+        }
+        private void checkBox2_Click(object sender, EventArgs e)
+        {
+            InputHours.Enabled = false;
+
+            if (!checkBox2.Checked)
+            {
+                InputHours.Enabled = true;
+            }
+        }
+        private void checkBox5_Click(object sender, EventArgs e)
+        {
+            InputHours.Enabled = false;
+
+            if (!checkBox5.Checked)
+            {
+                InputHours.Enabled = true;
+            }
+        }
+        private void InputHours_Click(object sender, EventArgs e)
+        {
+            InputHours.Text = "";
+        }
+        private void InputMinutes_Click(object sender, EventArgs e)
+        {
+            InputMinutes.Text = "";
+        }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             DB.Close();
         }
