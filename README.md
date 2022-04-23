@@ -13,5 +13,7 @@ Program to track hours spend for studing C# in different ways.
 ![GitHub commit activity](https://img.shields.io/badge/Status-In%20progress-yellowgreen)
 
 ## Updates
+Find new release [here](https://github.com/Vadim1108/Study-Time-Tracker/releases/tag/v1.0) or directly download [from here](https://github.com/Vadim1108/Study-Time-Tracker/releases/download/v1.0/Study.Time.Tracker.zip).
 
-Later will be supported rusian interface and linked .exe file.
+
+Later will be supported rusian interface.
