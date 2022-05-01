@@ -1,8 +1,6 @@
-# Study Time Tracker
+# Study Time Tracker (Project is closed)
 
 Program to track hours spend for studing C# in different ways.
-
-## Status Closed
 
 ### Screenshot
 
